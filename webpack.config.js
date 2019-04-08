@@ -9,16 +9,21 @@ module.exports = {
     },
     module:{
         rules:[
-            {
-
-            test:/\.(js)$/,
-            exclude:/(node_modules)/,
-            use:{
-                loader:'babel-loader',
+            
+        {
+            test:/\.(jpe?g|png|gif|svg)$/,
+            use:[
+                {
+                loader:'url-loader',
                 options:{
-                    presets:['@babel/preset-env']
+                    limit:400000,
+                    outputPath:'./images'
                 }
-            }
-        }]
+                },
+                'image-webpack-loader'
+        
+    ]
+}
+    ]
     }
 }
