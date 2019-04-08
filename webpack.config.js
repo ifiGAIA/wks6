@@ -14,12 +14,18 @@ module.exports = {
     module:{
         rules:[
             {
-                use: ExtractTextPlugin.extract({
-                  use: "css-loader"
-                }),
-                test: /\.css$/,
-              },
-
+                test:/\.css$/,
+               use: ExtractTextPlugin.extract({
+                  use: [{
+                     loader: 'css-loader',
+                     options:{
+                        url:false
+                     }
+                  },{
+                     loader: 'postcss-loader'
+                  }]
+               })
+            },
             {
             test:/\.(js)$/,
             exclude:/(node_modules)/,
